@@ -8,7 +8,6 @@
 </head>
 
 <body> 
-	<jsp:useBean id="user" class="Encje.Uczen" scope="session"></jsp:useBean>
 	
 LOGOWANIE
   <form method="post" action="waliduj.jsp ">

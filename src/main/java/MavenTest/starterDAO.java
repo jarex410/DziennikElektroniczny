@@ -1,8 +1,13 @@
 package MavenTest;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -192,6 +197,70 @@ public class starterDAO {
 
 		return POM;
 
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Ocena> wyswietlListeOcen(long uczen_id)   //Wyswietlanie listy ocen dla ucznia
+	{
+		List<Ocena> listaOcen = new ArrayList<Ocena>();
+		List<Ocena> listaWynikow = new ArrayList<Ocena>();
+		listaOcen=entityManager
+		.createQuery(
+				"SELECT o FROM Ocena o").getResultList();
+		
+		Iterator<Ocena> it = listaOcen.iterator();
+
+		
+		while(it.hasNext())
+		{
+			Ocena ocena=it.next();
+			
+			if(ocena.getUczen().getId()==uczen_id)
+			{
+				listaWynikow.add(ocena);
+			}
+		}
+		
+			
+		
+		
+		return listaWynikow;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Ocena> wyswietlListeOcen2(long uczen_id)   //Wyswietlanie listy ocen dla ucznia
+	{
+		List<Ocena> listaOcen = new ArrayList<Ocena>();
+		List<Ocena> listaWynikow = new ArrayList<Ocena>();
+		List<Przedmiot> listaPrzedmiotow = new ArrayList<Przedmiot>();
+		Uczen uczen = (Uczen) entityManager
+				.createQuery(
+						"SELECT u FROM Uczen u WHERE u.id LIKE :id").setParameter("id", uczen_id).getResultList().get(0);
+		int klasa = uczen.getKlasa().getId();
+		listaPrzedmiotow=entityManager
+				.createQuery(
+						"SELECT p FROM Przedmiot p WHERE p.").getResultList();
+		
+		listaOcen=entityManager
+		.createQuery(
+				"SELECT o FROM Ocena o").getResultList();
+		
+		Iterator<Ocena> it = listaOcen.iterator();
+
+		
+		while(it.hasNext())
+		{
+			Ocena ocena=it.next();
+			if(ocena.getUczen().getId()==uczen_id)
+			{
+				listaWynikow.add(ocena);
+			}
+		}
+		
+			
+		
+		
+		return listaWynikow;
 	}
 	
 /*	public List<Przedmiot> classSubjectList(Uczen uczen)
