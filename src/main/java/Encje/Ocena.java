@@ -5,8 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+
 @Entity
-public class Ocena {
+public class Ocena implements Comparable<Ocena> {
 
 	@Id
 	@GeneratedValue
@@ -61,6 +62,13 @@ public class Ocena {
 
 	public void setPrzedmiot(Przedmiot przedmiot) {
 		this.przedmiot = przedmiot;
+	}
+
+	public int compareTo(Ocena o) {
+		int porownaneOceny = przedmiot.compareTo(o.przedmiot);
+
+		return porownaneOceny;
+
 	}
 
 }

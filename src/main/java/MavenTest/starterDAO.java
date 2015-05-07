@@ -170,13 +170,11 @@ public class starterDAO {
 			POM = listaOcen.toString();
 
 			uczen.setOcena(listaOcenPom);
-			listaKlas=przedmiot1.getListaKlas();
+			listaKlas = przedmiot1.getListaKlas();
 			listaKlas.add(klasa);
-			
 
-			
 			przedmiot1.setListaKlas(listaKlas);
-			
+
 			entityManager.getTransaction().begin();
 			entityManager.persist(oc);
 			entityManager.merge(uczen);
@@ -188,7 +186,7 @@ public class starterDAO {
 		}
 
 		przedmiot1.setListaOcen(listaOcen);
-	
+
 		klasa.setListaOcenKlasy(listaOcen);
 		entityManager.getTransaction().begin();
 		entityManager.merge(przedmiot1);
@@ -198,85 +196,90 @@ public class starterDAO {
 		return POM;
 
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public List<Ocena> wyswietlListeOcen(long uczen_id)   //Wyswietlanie listy ocen dla ucznia
+	public List<Ocena> wyswietlListeOcen(long uczen_id) // Wyswietlanie listy
+														// ocen dla ucznia
 	{
 		List<Ocena> listaOcen = new ArrayList<Ocena>();
 		List<Ocena> listaWynikow = new ArrayList<Ocena>();
-		listaOcen=entityManager
-		.createQuery(
-				"SELECT o FROM Ocena o").getResultList();
-		
+		listaOcen = entityManager.createQuery("SELECT o FROM Ocena o")
+				.getResultList();
+
 		Iterator<Ocena> it = listaOcen.iterator();
 
-		
-		while(it.hasNext())
-		{
-			Ocena ocena=it.next();
-			
-			if(ocena.getUczen().getId()==uczen_id)
-			{
+		while (it.hasNext()) {
+			Ocena ocena = it.next();
+
+			if (ocena.getUczen().getId() == uczen_id) {
 				listaWynikow.add(ocena);
 			}
 		}
-		
-			
-		
-		
+
 		return listaWynikow;
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public List<Ocena> wyswietlListeOcen2(long uczen_id)   //Wyswietlanie listy ocen dla ucznia
+	public List<Ocena> wyswietlListeOcen2(long uczen_id) // Wyswietlanie listy
+															// ocen dla ucznia
 	{
 		List<Ocena> listaOcen = new ArrayList<Ocena>();
 		List<Ocena> listaWynikow = new ArrayList<Ocena>();
-		List<Przedmiot> listaPrzedmiotow = new ArrayList<Przedmiot>();
-		Uczen uczen = (Uczen) entityManager
-				.createQuery(
-						"SELECT u FROM Uczen u WHERE u.id LIKE :id").setParameter("id", uczen_id).getResultList().get(0);
-		int klasa = uczen.getKlasa().getId();
-		listaPrzedmiotow=entityManager
-				.createQuery(
-						"SELECT p FROM Przedmiot p WHERE p.").getResultList();
-		
-		listaOcen=entityManager
-		.createQuery(
-				"SELECT o FROM Ocena o").getResultList();
-		
-		Iterator<Ocena> it = listaOcen.iterator();
+		listaOcen = entityManager.createQuery("SELECT o FROM Ocena o")
+				.getResultList();
 
-		
-		while(it.hasNext())
-		{
-			Ocena ocena=it.next();
-			if(ocena.getUczen().getId()==uczen_id)
-			{
+		Iterator<Ocena> it = listaOcen.iterator();
+		String pom = "";
+
+		while (it.hasNext()) {
+			Ocena ocena = it.next();
+
+			if (ocena.getUczen().getId() == uczen_id) {
 				listaWynikow.add(ocena);
 			}
 		}
-		
-			
-		
-		
-		return listaWynikow;
-	}
-	
-/*	public List<Przedmiot> classSubjectList(Uczen uczen)
-	{
-		List<Przedmiot> listaPrzedmiotowKlasy;
-		Klasa klasa = uczen.getKlasa();
-		
-		Uczen uczen1 =(Uczen) entityManager
-				.createQuery(
-						"SELECT p FROM Przedmiot p WHERE k.id LIKE :id")
-				.setParameter("id", klasa.getId()).getResultList().get(0);
+		Collections.sort(listaWynikow);
 
-		
-		listaPrzedmiotowKlasy=uczen1.getKlasa();
-			
-		return listaPrzedmiotowKlasy;
-	}*/
+		List<Ocena> listaWynikow2 = new ArrayList<Ocena>();
+		Ocena ocenaPom = new Ocena();
+		Przedmiot przedmiotPom =new Przedmiot();
+		przedmiotPom.setId(9999);
+		ocenaPom.setPrzedmiot(przedmiotPom);
+		for (int i = 0; i < listaWynikow.size(); i++) {
+			Ocena ocena = listaWynikow.get(i);
+			if (ocena.getPrzedmiot().getId() == ocenaPom.getPrzedmiot().getId())
+				continue;
+
+			// if (ocena.getId_ocen() != ocenaPom.getId_ocen()) {
+			for (int j = i + 1; j < listaWynikow.size(); j++) {
+				Ocena ocena2 = listaWynikow.get(j);
+				if (ocena.getPrzedmiot().getId() == ocena2.getPrzedmiot()
+						.getId()) {
+					pom = ocena.getOceny() + " " + ocena2.getOceny();
+					ocena.setOceny(pom);
+					ocenaPom = ocena;
+				}
+
+			}
+			listaWynikow2.add(ocena);
+			// }
+		}
+
+		return listaWynikow2;
+	}
+
+	/*
+	 * public List<Przedmiot> classSubjectList(Uczen uczen) { List<Przedmiot>
+	 * listaPrzedmiotowKlasy; Klasa klasa = uczen.getKlasa();
+	 * 
+	 * Uczen uczen1 =(Uczen) entityManager .createQuery(
+	 * "SELECT p FROM Przedmiot p WHERE k.id LIKE :id") .setParameter("id",
+	 * klasa.getId()).getResultList().get(0);
+	 * 
+	 * 
+	 * listaPrzedmiotowKlasy=uczen1.getKlasa();
+	 * 
+	 * return listaPrzedmiotowKlasy; }
+	 */
 
 }

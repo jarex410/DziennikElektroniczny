@@ -29,7 +29,7 @@
 		String pass=user.getPass();
 		
 			if (check.check(id, pass) == 1) {
-		java.util.List<Ocena> listaOcen = check.wyswietlListeOcen(id);  //gotowy kod do nastepnego pliku jsp
+		java.util.List<Ocena> listaOcen = check.wyswietlListeOcen2(id);  //gotowy kod do nastepnego pliku jsp
 
 		Iterator<Ocena> it = listaOcen.iterator();
 		String pom = "<table><td>Przedmiot</td>  <td>Ocena</td> <br/>";

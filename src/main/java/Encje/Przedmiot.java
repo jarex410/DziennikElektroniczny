@@ -20,9 +20,9 @@ public class Przedmiot {
 	private List<Klasa> listaKlas;
 
 	@ManyToOne
-//	@JoinColumn(name = "Przedmiot")
+	// @JoinColumn(name = "Przedmiot")
 	private Nauczyciel nauczyciel;
-	
+
 	@OneToMany(mappedBy = "przedmiot")
 	private List<Ocena> listaOcen;
 
@@ -64,6 +64,14 @@ public class Przedmiot {
 
 	public void setListaOcen(List<Ocena> listaOcen) {
 		this.listaOcen = listaOcen;
+	}
+
+	public int compareTo(Przedmiot przedmiot) {
+
+		int porownanePrzedmioty = nazwa.compareTo(przedmiot.nazwa);
+
+		return porownanePrzedmioty;
+
 	}
 
 }
