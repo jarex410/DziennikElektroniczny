@@ -39,7 +39,7 @@
 		}
 
 		out.print("Lista uczniow klasy "+ Klasa + " <form method=\"post\" action=\"UpDate.jsp \">"
-				+ "<textarea name=\"Lista_Uczniow\" rows=25 >"
+				+ "<textarea name=\"Lista_Uczniow\" rows=25  cols=30>"
 				+ pom
 				+ " </textarea> ");
 		

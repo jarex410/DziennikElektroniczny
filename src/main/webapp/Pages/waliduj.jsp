@@ -25,65 +25,67 @@
 
 
 	<%
+		long id = user.getId();
+		String pass = user.getPass();
 
-		long id=user.getId();
-		String pass=user.getPass();
-		
-			if (check.check(id, pass) == 1) {
-		java.util.List<Ocena> listaOcen = check.wyswietlListeOcen2(id);  //gotowy kod do nastepnego pliku jsp
-		out.println("Witaj "+check.getStudentName(id) + "<br/>");
-		Iterator<Ocena> it = listaOcen.iterator();
-		String pom = "<table><td>Przedmiot</td>  <td>Ocena</td> <br/>";
-		Ocena ocena = new Ocena();
-		
-		
-		while (it.hasNext()) {
-			ocena = it.next();
-			pom += "<tr><td>"+ ocena.getPrzedmiot().getNazwa()+"</td><td>"
-					+ ocena.getOceny() + "</td></tr> ";
-		}
-		pom+="</table>";
-		out.print(pom);
-		out.print("<form method=\"post\" action=\"LogOut.jsp \">"
-				+ "<input type=\"submit\" value=\"Wyloguj\">");
+		if (check.check(id, pass) == 1) {
+			java.util.List<Ocena> listaOcen = check.wyswietlListeOcen2(id); //gotowy kod do nastepnego pliku jsp
+			out.println("Witaj " + check.getStudentName(id) + "<br/>");
+			Iterator<Ocena> it = listaOcen.iterator();
+			String pom = "<table><td>Przedmiot</td>  <td>Ocena</td> <br/>";
+			Ocena ocena = new Ocena();
+
+			while (it.hasNext()) {
+				ocena = it.next();
+				pom += "<tr><td>" + ocena.getPrzedmiot().getNazwa()
+						+ "</td><td>" + ocena.getOceny() + "</td></tr> ";
 			}
-
-			else if (check.check(id, pass) == 2) {
-		out.println("Witaj "+check.getTeacherName(id) + "<br/>");
-		String pom = "";
-		String pom2 = "";
-		int i = 0;
-		Nauczyciel na = new Nauczyciel();
-		na = check.subjectList(id);
-
-		java.util.List<Przedmiot> listaPrzemiotow = na
-				.getListaPrzedmiotow();
-		Iterator<Przedmiot> it = listaPrzemiotow.iterator();
-
-		while (it.hasNext())
-
-		{
-
-			pom += "<option>" + it.next().getNazwa() + "</option>"
-					+ " ";
-
+			pom += "</table>";
+			out.print(pom);
+			out.print("<form method=\"post\" action=\"LogOut.jsp \">"
+					+ "<input type=\"submit\" value=\"Wyloguj\">");
 		}
 
-		out.print("Wybierz przedmiot:  <form method=\"post\" action=\"Oceny.jsp \">"
-				+ "<select name=\"Lista_zajec\"  size=\"10\">"
-				+ pom
-				+ " </select> ");
+		else if (check.check(id, pass) == 2) {
+			out.println("Witaj " + check.getTeacherName(id) + "<br/>");
+			String pom = "";
+			String pom2 = "";
+			int j = 0;
+			int i = 0;
+			Nauczyciel na = new Nauczyciel();
+			na = check.subjectList(id);
 
-		out.print("Wybierz klase: "
-				+ "<select name=\"Lista_klas\"  size=\"10\">"
-				+ "<option>I</option><option>II</option><option>III</option><option>IV</option><option>V</option><option>VI</option>"
-				+ " </select> "
-				+ "<input type=\"submit\" value=\"Dodaj oceny dla wybranej klasy\"></form> ");
+			java.util.List<Przedmiot> listaPrzemiotow = na
+					.getListaPrzedmiotow();
+			Iterator<Przedmiot> it = listaPrzemiotow.iterator();
 
+			while (it.hasNext())
+
+			{
+				if (j == 0) {
+					pom += "<option selected>" + it.next().getNazwa()
+							+ "</option>" + " ";
+					j = 1;
+				} else
+					pom += "<option>" + it.next().getNazwa() + "</option>"
+							+ " ";
 			}
 
-			else
-		out.print("Bład LOGOWANIA");
+			out.print("Wybierz przedmiot:  <form method=\"post\" action=\"Oceny.jsp \">"
+					+ "<select name=\"Lista_zajec\"  size=\"10\">"
+					+ pom
+					+ " </select> ");
+
+			out.print("Wybierz klase: "
+					+ "<select name=\"Lista_klas\"  size=\"10\">"
+					+ "<option selected>I</option><option>II</option><option>III</option><option>IV</option><option>V</option><option>VI</option>"
+					+ " </select> "
+					+ "<input type=\"submit\" value=\"Dodaj oceny dla wybranej klasy\"></form> ");
+
+		}
+
+		else
+			out.print("Bład LOGOWANIA");
 	%>
 	<br />
 	<br />

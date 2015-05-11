@@ -16,8 +16,8 @@ public class Przedmiot {
 	@GeneratedValue
 	private int id;
 	private String nazwa;
-	@ManyToMany(mappedBy = "przedmiot_id")
-	private List<Klasa> listaKlas;
+	@ManyToMany(mappedBy = "przedmiot")
+	private List<Klasa> klasa;
 
 	@ManyToOne
 	private Nauczyciel nauczyciel;
@@ -42,11 +42,11 @@ public class Przedmiot {
 	}
 
 	public List<Klasa> getListaKlas() {
-		return listaKlas;
+		return klasa;
 	}
 
 	public void setListaKlas(List<Klasa> listaKlas) {
-		this.listaKlas = listaKlas;
+		this.klasa = listaKlas;
 	}
 
 	public Nauczyciel getNauczyciel() {

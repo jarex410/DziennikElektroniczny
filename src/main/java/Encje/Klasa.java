@@ -21,7 +21,7 @@ public class Klasa {
 	private List<Ocena> listaOcenKlasy;
 	
 	@ManyToMany
-	private List<Przedmiot> przedmiot_id;
+	private List<Przedmiot> przedmiot;
 	
 
 	public int getId() {
@@ -57,11 +57,11 @@ public class Klasa {
 	}
 
 	public List<Przedmiot> getListaPrzedmiotowKlasy() {
-		return przedmiot_id;
+		return przedmiot;
 	}
 
 	public void setListaPrzedmiotowKlasy(List<Przedmiot> listaPrzedmiotowKlasy) {
-		this.przedmiot_id = listaPrzedmiotowKlasy;
+		this.przedmiot = listaPrzedmiotowKlasy;
 	}
 
 

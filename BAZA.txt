@@ -1,0 +1,72 @@
+CREATE SCHEMA `baza` DEFAULT CHARACTER SET utf8 COLLATE utf8_polish_ci ;
+
+
+INSERT INTO `baza`.`klasa` (`id`, `oznaczenie`) VALUES ('1', 'I');
+INSERT INTO `baza`.`klasa` (`id`, `oznaczenie`) VALUES ('2', 'II');
+INSERT INTO `baza`.`klasa` (`id`, `oznaczenie`) VALUES ('3', 'III');
+INSERT INTO `baza`.`klasa` (`id`, `oznaczenie`) VALUES ('4', 'IV');
+INSERT INTO `baza`.`klasa` (`id`, `oznaczenie`) VALUES ('5', 'V');
+INSERT INTO `baza`.`klasa` (`id`, `oznaczenie`) VALUES ('6', 'VI');
+
+
+INSERT INTO `baza`.`nauczyciel` (`id`, `adres`, `imie`, `nazwisko`, `pass`) VALUES ('1000', 'Jastrzebiec 13', 'Ryszard', 'Nowak', 'Ryszard');
+INSERT INTO `baza`.`nauczyciel` (`id`, `adres`, `imie`, `nazwisko`, `pass`) VALUES ('1001', 'Stara Chuta', 'S³awomir', 'Kowalski', 'S³awomir');
+INSERT INTO `baza`.`nauczyciel` (`id`, `adres`, `imie`, `nazwisko`, `pass`) VALUES ('1002', '£ukowa 15', 'Krystyna', 'Porzeczka', 'Krystyna');
+INSERT INTO `baza`.`nauczyciel` (`id`, `adres`, `imie`, `nazwisko`, `pass`) VALUES ('1003', 'Ksiê¿pol ul. Modrzewiowa 13', 'Maurtcy', 'Kot', 'Maurycy');
+INSERT INTO `baza`.`nauczyciel` (`id`, `adres`, `imie`, `nazwisko`, `pass`) VALUES ('1004', 'Chmielek 50', 'Zygmunt', 'Koœcielski', 'Zygmunt');
+INSERT INTO `baza`.`nauczyciel` (`id`, `adres`, `imie`, `nazwisko`, `pass`) VALUES ('1005', 'Ksiê¿pol ul. Bi³gorajska 20', 'Zofia', 'Fio³ek', 'Zofia');
+INSERT INTO `baza`.`nauczyciel` (`id`, `adres`, `imie`, `nazwisko`, `pass`) VALUES ('1006', 'Babice 50', 'Joanna', 'Czarnecka', 'Joanna');
+INSERT INTO `baza`.`nauczyciel` (`id`, `adres`, `imie`, `nazwisko`, `pass`) VALUES ('1007', 'Ksiê¿pol ul. D³uga 50', 'Tomasz', 'Kot', 'Tomasz');
+INSERT INTO `baza`.`nauczyciel` (`id`, `adres`, `imie`, `nazwisko`, `pass`) VALUES ('1008', 'Zawadka 50', 'Pawe³', 'Koñ', 'Pawe³');
+INSERT INTO `baza`.`nauczyciel` (`id`, `adres`, `imie`, `nazwisko`, `pass`) VALUES ('1009', 'Korchów Pierwszy 20', 'Jaros³aw', 'Kowalczuk', 'Jaros³aw');
+INSERT INTO `baza`.`nauczyciel` (`id`, `adres`, `imie`, `nazwisko`, `pass`) VALUES ('1010', 'Tarnogród ul. Rynek 15', 'Oktawia', 'Stratyj', 'Oktawia');
+
+
+INSERT INTO `baza`.`przedmiot` (`id`, `nazwa`, `nauczyciel_id`) VALUES ('1', 'matematyka', '1000');
+INSERT INTO `baza`.`przedmiot` (`id`, `nazwa`, `nauczyciel_id`) VALUES ('2', 'j.polski', '1002');
+INSERT INTO `baza`.`przedmiot` (`id`, `nazwa`, `nauczyciel_id`) VALUES ('3', 'j.angielski', '1003');
+INSERT INTO `baza`.`przedmiot` (`id`, `nazwa`, `nauczyciel_id`) VALUES ('4', 'j.rosyjski', '1004');
+INSERT INTO `baza`.`przedmiot` (`id`, `nazwa`, `nauczyciel_id`) VALUES ('5', 'przyroda', '1005');
+INSERT INTO `baza`.`przedmiot` (`id`, `nazwa`, `nauczyciel_id`) VALUES ('6', 'religia', '1006');
+INSERT INTO `baza`.`przedmiot` (`id`, `nazwa`, `nauczyciel_id`) VALUES ('7', 'wychowanie fizyczne', '1001');
+INSERT INTO `baza`.`przedmiot` (`id`, `nazwa`, `nauczyciel_id`) VALUES ('8', 'historia', '1008');
+INSERT INTO `baza`.`przedmiot` (`id`, `nazwa`, `nauczyciel_id`) VALUES ('9', 'wos', '1009');
+INSERT INTO `baza`.`przedmiot` (`id`, `nazwa`, `nauczyciel_id`) VALUES ('10', 'informatyka', '1010');
+INSERT INTO `baza`.`przedmiot` (`id`, `nazwa`, `nauczyciel_id`) VALUES ('11', 'technika', '1000');
+INSERT INTO `baza`.`przedmiot` (`id`, `nazwa`, `nauczyciel_id`) VALUES ('12', 'plastyka', '1002');
+INSERT INTO `baza`.`przedmiot` (`id`, `nazwa`, `nauczyciel_id`) VALUES ('13', 'muzyka', '1003');
+INSERT INTO `baza`.`przedmiot` (`id`, `nazwa`, `nauczyciel_id`) VALUES ('14', 'etyka', '1004');
+INSERT INTO `baza`.`przedmiot` (`id`, `nazwa`, `nauczyciel_id`) VALUES ('15', 'wychowanie do ¿ycia w rodzinie', '1005');
+
+
+INSERT INTO `baza`.`uczen` (`id`, `adres`, `imie`, `nazwisko`, `pass`, `klasa_id`) VALUES ('156010', 'Babice 13', 'Jolanta', 'B³aszkiewicz', '1234', '6');
+INSERT INTO `baza`.`uczen` (`id`, `adres`, `imie`, `nazwisko`, `pass`, `klasa_id`) VALUES ('156011', 'Babice 50', 'Teresa', 'Chudala', '1234', '6');
+INSERT INTO `baza`.`uczen` (`id`, `adres`, `imie`, `nazwisko`, `pass`, `klasa_id`) VALUES ('156012', 'Babice 54', 'Jan', 'Cieœlak ', '1234', '6');
+INSERT INTO `baza`.`uczen` (`id`, `adres`, `imie`, `nazwisko`, `pass`, `klasa_id`) VALUES ('156013', 'Olchowiec 5', ' Bart³omiej', 'Czuj', '1234', '6');
+INSERT INTO `baza`.`uczen` (`id`, `adres`, `imie`, `nazwisko`, `pass`, `klasa_id`) VALUES ('156014', 'Olchowiec 30', 'Anna', 'Duda', '1234', '6');
+INSERT INTO `baza`.`uczen` (`id`, `adres`, `imie`, `nazwisko`, `pass`, `klasa_id`) VALUES ('156015', '£ukowa 50', 'El¿bieta', 'Felusiak', '1234', '6');
+INSERT INTO `baza`.`uczen` (`id`, `adres`, `imie`, `nazwisko`, `pass`, `klasa_id`) VALUES ('156016', 'Babice 12', 'Dominika', 'Gardas', '1234', '6');
+INSERT INTO `baza`.`uczen` (`id`, `adres`, `imie`, `nazwisko`, `pass`, `klasa_id`) VALUES ('156017', 'Olchowiec 30', 'Dorota', 'Glej', '1234', '6');
+INSERT INTO `baza`.`uczen` (`id`, `adres`, `imie`, `nazwisko`, `pass`, `klasa_id`) VALUES ('156018', 'Olchowiec 50', 'Edward', 'G³odowicz', '1234', '6');
+INSERT INTO `baza`.`uczen` (`id`, `adres`, `imie`, `nazwisko`, `pass`, `klasa_id`) VALUES ('156019', 'Zawadka 50', 'Anna', 'Golec', '1234', '6');
+INSERT INTO `baza`.`uczen` (`id`, `adres`, `imie`, `nazwisko`, `pass`, `klasa_id`) VALUES ('156020', '£ukowa 34', 'Anita ', 'Kimak', '1234', '6');
+INSERT INTO `baza`.`uczen` (`id`, `adres`, `imie`, `nazwisko`, `pass`, `klasa_id`) VALUES ('156021', 'Zawadka 50', 'Beata', 'Poremba', '1234', '6');
+INSERT INTO `baza`.`uczen` (`id`, `adres`, `imie`, `nazwisko`, `pass`, `klasa_id`) VALUES ('156022', 'Babice 12', 'Jan', 'Skiba', '1234', '6');
+INSERT INTO `baza`.`uczen` (`id`, `adres`, `imie`, `nazwisko`, `pass`, `klasa_id`) VALUES ('156023', 'Olchowiec 77 ', 'Marzena ', 'Sprancel', '1234', '6');
+INSERT INTO `baza`.`uczen` (`id`, `adres`, `imie`, `nazwisko`, `pass`, `klasa_id`) VALUES ('156024', 'Babice 67', 'Ró¿a', 'Wilim', '1234', '6');
+INSERT INTO `baza`.`uczen` (`id`, `adres`, `imie`, `nazwisko`, `pass`, `klasa_id`) VALUES ('156025', 'Olchowiec 93', 'Jan', 'Wojczyk', '1234', '6');
+
+
+INSERT INTO `baza`.`klasa_przedmiot` (`klasa_id`, `przedmiot_id`) VALUES ('6', '1');
+INSERT INTO `baza`.`klasa_przedmiot` (`klasa_id`, `przedmiot_id`) VALUES ('6', '2');
+INSERT INTO `baza`.`klasa_przedmiot` (`klasa_id`, `przedmiot_id`) VALUES ('6', '3');
+INSERT INTO `baza`.`klasa_przedmiot` (`klasa_id`, `przedmiot_id`) VALUES ('6', '10');
+INSERT INTO `baza`.`klasa_przedmiot` (`klasa_id`, `przedmiot_id`) VALUES ('6', '6');
+INSERT INTO `baza`.`klasa_przedmiot` (`klasa_id`, `przedmiot_id`) VALUES ('6', '7');
+INSERT INTO `baza`.`klasa_przedmiot` (`klasa_id`, `przedmiot_id`) VALUES ('6', '13');
+INSERT INTO `baza`.`klasa_przedmiot` (`klasa_id`, `przedmiot_id`) VALUES ('6', '8');
+INSERT INTO `baza`.`klasa_przedmiot` (`klasa_id`, `przedmiot_id`) VALUES ('6', '5');
+INSERT INTO `baza`.`klasa_przedmiot` (`klasa_id`, `przedmiot_id`) VALUES ('6', '11');
+INSERT INTO `baza`.`klasa_przedmiot` (`klasa_id`, `przedmiot_id`) VALUES ('6', '12');
+
+

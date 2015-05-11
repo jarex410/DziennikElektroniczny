@@ -14,7 +14,7 @@ LOGOWANIE
         login: <br />
         <input type="text" name="id" /><br /> 
         HASLO: <br />
-        <input type="text" name="pass" /><br /> 
+        <input type="password" name="pass" /><br /> 
         <input type="submit" value="zaloguj">
     </form>
 kpka]
