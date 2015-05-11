@@ -49,6 +49,28 @@ public class starterDAO {
 			return 0; // 0 jesli user nie istnieje
 	}
 
+	public String getStudentName(long id)
+	{
+		Uczen uczen=new Uczen();
+		uczen=(Uczen) entityManager
+		.createQuery(
+				"SELECT u FROM Uczen u WHERE u.id LIKE :id")
+		.setParameter("id", id).getResultList().get(0);
+		
+		return uczen.getImie();
+	}
+	
+	public String getTeacherName(long id)
+	{
+		Nauczyciel nauczyciel=new Nauczyciel();
+		nauczyciel=(Nauczyciel) entityManager
+		.createQuery(
+				"SELECT n FROM Nauczyciel n WHERE n.id LIKE :id")
+		.setParameter("id", id).getResultList().get(0);
+		
+		return nauczyciel.getImie();
+	}
+	
 	// Funckja zwraca listê przedmiotow prowadzonych przez zalogowanego
 	// nauczyciela
 
@@ -159,11 +181,12 @@ public class starterDAO {
 
 			Uczen uczen = listaUczniowKlasy.get(k);
 
-			ArrayList<Ocena> listaOcenPom = new ArrayList<Ocena>();
+			List<Ocena> listaOcenPom = new ArrayList<Ocena>();
+			listaOcenPom=uczen.getOcena();
 			oc.setOceny(Oceny[k]); //
 			oc.setKlasa(klasa);
 			oc.setPrzedmiot(przedmiot1);
-			oc.setUczen(uczen);
+			oc.setUczen(uczen);	
 
 			listaOcen.add(oc);
 			listaOcenPom.add(oc);

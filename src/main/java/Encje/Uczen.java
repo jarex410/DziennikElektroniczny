@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 @Entity
@@ -18,7 +17,6 @@ public class Uczen {
 	private String pass;
 	
 	@ManyToOne
-//	@JoinColumn(name = "Klasa")
 	private Klasa klasa;
 	
 	@OneToMany

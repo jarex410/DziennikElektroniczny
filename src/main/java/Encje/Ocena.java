@@ -15,13 +15,10 @@ public class Ocena implements Comparable<Ocena> {
 	private String oceny;
 
 	@ManyToOne
-	// @JoinColumn(name = "Ocena")
 	private Uczen Uczen;
 	@ManyToOne
-	// @JoinColumn(name = "Ocena")
 	private Klasa klasa;
 	@ManyToOne
-	// @JoinColumn(name = "Ocena")
 	private Przedmiot przedmiot;
 
 	public int getId_ocen() {

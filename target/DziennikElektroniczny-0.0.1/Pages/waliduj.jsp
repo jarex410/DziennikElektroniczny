@@ -8,7 +8,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>First JSP</title>
 </head>
 
@@ -25,12 +25,13 @@
 
 
 	<%
+
 		long id=user.getId();
 		String pass=user.getPass();
 		
 			if (check.check(id, pass) == 1) {
 		java.util.List<Ocena> listaOcen = check.wyswietlListeOcen2(id);  //gotowy kod do nastepnego pliku jsp
-
+		out.println("Witaj "+check.getStudentName(id) + "<br/>");
 		Iterator<Ocena> it = listaOcen.iterator();
 		String pom = "<table><td>Przedmiot</td>  <td>Ocena</td> <br/>";
 		Ocena ocena = new Ocena();
@@ -43,12 +44,12 @@
 		}
 		pom+="</table>";
 		out.print(pom);
-		out.print("<form method=\"post\" action=\"Przedmioty.jsp \">"
-				+ "<input type=\"submit\" value=\"Wyświetl swoje przedmioty\">");
+		out.print("<form method=\"post\" action=\"LogOut.jsp \">"
+				+ "<input type=\"submit\" value=\"Wyloguj\">");
 			}
 
 			else if (check.check(id, pass) == 2) {
-
+		out.println("Witaj "+check.getTeacherName(id) + "<br/>");
 		String pom = "";
 		String pom2 = "";
 		int i = 0;

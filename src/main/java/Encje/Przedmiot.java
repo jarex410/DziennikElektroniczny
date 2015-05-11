@@ -16,11 +16,10 @@ public class Przedmiot {
 	@GeneratedValue
 	private int id;
 	private String nazwa;
-	@ManyToMany(mappedBy = "listaPrzedmiotowKlasy")
+	@ManyToMany(mappedBy = "przedmiot_id")
 	private List<Klasa> listaKlas;
 
 	@ManyToOne
-	// @JoinColumn(name = "Przedmiot")
 	private Nauczyciel nauczyciel;
 
 	@OneToMany(mappedBy = "przedmiot")

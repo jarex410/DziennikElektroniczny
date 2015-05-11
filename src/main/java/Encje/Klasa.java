@@ -21,12 +21,7 @@ public class Klasa {
 	private List<Ocena> listaOcenKlasy;
 	
 	@ManyToMany
-/*	@JoinTable(
-		name = "Przedmioty_klas",
-		joinColumns = {@JoinColumn(name = "identyfikator_klasy")},
-		inverseJoinColumns = {@JoinColumn(name = "id_przedmiotu")}
-	)*/
-	private List<Przedmiot> listaPrzedmiotowKlasy;
+	private List<Przedmiot> przedmiot_id;
 	
 
 	public int getId() {
@@ -62,11 +57,11 @@ public class Klasa {
 	}
 
 	public List<Przedmiot> getListaPrzedmiotowKlasy() {
-		return listaPrzedmiotowKlasy;
+		return przedmiot_id;
 	}
 
 	public void setListaPrzedmiotowKlasy(List<Przedmiot> listaPrzedmiotowKlasy) {
-		this.listaPrzedmiotowKlasy = listaPrzedmiotowKlasy;
+		this.przedmiot_id = listaPrzedmiotowKlasy;
 	}
 
 
