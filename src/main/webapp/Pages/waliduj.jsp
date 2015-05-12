@@ -23,14 +23,15 @@
 
 	<jsp:useBean id="check" class="MavenTest.starterDAO" scope="session"></jsp:useBean>
 
-
 	<%
 		long id = user.getId();
 		String pass = user.getPass();
 
 		if (check.check(id, pass) == 1) {
-			java.util.List<Ocena> listaOcen = check.wyswietlListeOcen2(id); //gotowy kod do nastepnego pliku jsp
-			out.println("Witaj " + check.getStudentName(id) + "<br/>");
+			java.util.List<Ocena> listaOcen = check.wyswietlListeOcen2(id);
+			out.println("Witaj "
+					+ "<form method=\"post\" action=\"ZmianaHasla.jsp \"> <input type=\"submit\" value=\"Zmien hasło\">"
+					+ "</form>  <br/>");
 			Iterator<Ocena> it = listaOcen.iterator();
 			String pom = "<table><td>Przedmiot</td>  <td>Ocena</td> <br/>";
 			Ocena ocena = new Ocena();
@@ -47,7 +48,11 @@
 		}
 
 		else if (check.check(id, pass) == 2) {
-			out.println("Witaj " + check.getTeacherName(id) + "<br/>");
+			out.println("Witaj "
+					+ check.getTeacherName(id)
+					+ "<form method=\"post\" action=\"ZmianaHasla.jsp \"> <input type=\"submit\" value=\"Zmien hasło\">"
+					+ "</form>  <br/>");
+
 			String pom = "";
 			String pom2 = "";
 			int j = 0;

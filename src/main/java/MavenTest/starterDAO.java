@@ -49,28 +49,24 @@ public class starterDAO {
 			return 0; // 0 jesli user nie istnieje
 	}
 
-	public String getStudentName(long id)
-	{
-		Uczen uczen=new Uczen();
-		uczen=(Uczen) entityManager
-		.createQuery(
-				"SELECT u FROM Uczen u WHERE u.id LIKE :id")
-		.setParameter("id", id).getResultList().get(0);
-		
+	public String getStudentName(long id) {
+		Uczen uczen = new Uczen();
+		uczen = (Uczen) entityManager
+				.createQuery("SELECT u FROM Uczen u WHERE u.id LIKE :id")
+				.setParameter("id", id).getResultList().get(0);
+
 		return uczen.getImie();
 	}
-	
-	public String getTeacherName(long id)
-	{
-		Nauczyciel nauczyciel=new Nauczyciel();
-		nauczyciel=(Nauczyciel) entityManager
-		.createQuery(
-				"SELECT n FROM Nauczyciel n WHERE n.id LIKE :id")
-		.setParameter("id", id).getResultList().get(0);
-		
+
+	public String getTeacherName(long id) {
+		Nauczyciel nauczyciel = new Nauczyciel();
+		nauczyciel = (Nauczyciel) entityManager
+				.createQuery("SELECT n FROM Nauczyciel n WHERE n.id LIKE :id")
+				.setParameter("id", id).getResultList().get(0);
+
 		return nauczyciel.getImie();
 	}
-	
+
 	// Funckja zwraca listê przedmiotow prowadzonych przez zalogowanego
 	// nauczyciela
 
@@ -182,11 +178,11 @@ public class starterDAO {
 			Uczen uczen = listaUczniowKlasy.get(k);
 
 			List<Ocena> listaOcenPom = new ArrayList<Ocena>();
-			listaOcenPom=uczen.getOcena();
+			listaOcenPom = uczen.getOcena();
 			oc.setOceny(Oceny[k]); //
 			oc.setKlasa(klasa);
 			oc.setPrzedmiot(przedmiot1);
-			oc.setUczen(uczen);	
+			oc.setUczen(uczen);
 
 			listaOcen.add(oc);
 			listaOcenPom.add(oc);
@@ -265,7 +261,7 @@ public class starterDAO {
 
 		List<Ocena> listaWynikow2 = new ArrayList<Ocena>();
 		Ocena ocenaPom = new Ocena();
-		Przedmiot przedmiotPom =new Przedmiot();
+		Przedmiot przedmiotPom = new Przedmiot();
 		przedmiotPom.setId(9999);
 		ocenaPom.setPrzedmiot(przedmiotPom);
 		for (int i = 0; i < listaWynikow.size(); i++) {
@@ -291,18 +287,40 @@ public class starterDAO {
 		return listaWynikow2;
 	}
 
-	/*
-	 * public List<Przedmiot> classSubjectList(Uczen uczen) { List<Przedmiot>
-	 * listaPrzedmiotowKlasy; Klasa klasa = uczen.getKlasa();
-	 * 
-	 * Uczen uczen1 =(Uczen) entityManager .createQuery(
-	 * "SELECT p FROM Przedmiot p WHERE k.id LIKE :id") .setParameter("id",
-	 * klasa.getId()).getResultList().get(0);
-	 * 
-	 * 
-	 * listaPrzedmiotowKlasy=uczen1.getKlasa();
-	 * 
-	 * return listaPrzedmiotowKlasy; }
-	 */
+	public boolean passChange(long id, String pass, String newPass) {
+		Uczen uczen = new Uczen();
+		Nauczyciel nauczyciel = new Nauczyciel();
+		starterDAO start = new starterDAO();
+
+		if (start.check(id, pass) == 1) {
+			uczen = (Uczen) entityManager
+					.createQuery(
+							"SELECT u FROM Uczen u WHERE u.id LIKE :id AND u.pass LIKE :pass")
+					.setParameter("id", id).setParameter("pass", pass)
+					.getResultList().get(0);
+
+			uczen.setPass(newPass);
+			entityManager.getTransaction().begin();
+			entityManager.merge(uczen);
+			entityManager.getTransaction().commit();
+
+			return true;
+
+		} else if (start.check(id, pass) == 2) {
+			nauczyciel = (Nauczyciel) entityManager
+					.createQuery(
+							"SELECT n FROM Nauczyciel n WHERE n.id LIKE :id AND n.pass LIKE :pass")
+					.setParameter("id", id).setParameter("pass", pass)
+					.getResultList().get(0);
+
+			nauczyciel.setPass(newPass);
+			entityManager.getTransaction().begin();
+			entityManager.merge(nauczyciel);
+			entityManager.getTransaction().commit();
+			return true;
+		}
+
+		return false;
+	}
 
 }
