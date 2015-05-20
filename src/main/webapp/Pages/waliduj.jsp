@@ -5,18 +5,47 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>First JSP</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Dziennik Elektroniczny</title>
+
+<link href="templatemo_style.css" rel="stylesheet" type="text/css" />
 </head>
-
 <body>
+<div id="templatemo_site_title_bar_wrapper">
+	<div id="templatemo_site_title_bar">
+    	<div id="site_title">
+            <h1><a href="#">
 
-	PO WALIDACJI
-	<br />
+                        <h1>Szkoła Podstawowa </h1>
+            	<span>w Korchowie Pierwszym</span>
+            
+            </a></h1>
+        </div>
+        
+    
+    </div> <!-- end of templatemo_site_title_bar -->
+</div> <!-- end of templatemo_site_title_bar_wrapper -->
 
+<div id="templatemo_menu_wrapper">
+
+	<div id="templatemo_menu">
+        <ul>
+            <li><a href="index.jsp" class="current">Str. Główna</a></li>
+            <li><a href="Logowanie.jsp">Dziennik Ele.</a></li>
+            <li><a href="ZmianaHasla.jsp">Zmiana hasła</a></li>
+			<li><a href="LogOut.jsp" class="last">Wyloguj</a></li>
+        </ul>    	
+    </div> <!-- end of templatemo_menu -->
+
+</div> <!-- end of templatemo_menu_wrapper -->
+
+<div id="templatemo_content">
+
+    
+    	<div class="section_w600 margin_r_40">
+        
 	<jsp:useBean id="user" class="Encje.Uczen" scope="session"></jsp:useBean>
 
 	<jsp:setProperty property="*" name="user" />
@@ -29,11 +58,10 @@
 
 		if (check.check(id, pass) == 1) {
 			java.util.List<Ocena> listaOcen = check.wyswietlListeOcen2(id);
-			out.println("Witaj "
-					+ "<form method=\"post\" action=\"ZmianaHasla.jsp \"> <input type=\"submit\" value=\"Zmien hasło\">"
-					+ "</form>  <br/>");
+			out.println("<h1> Witaj "
+					+  check.getStudentName(id) + "!</h1>");
 			Iterator<Ocena> it = listaOcen.iterator();
-			String pom = "<table><td>Przedmiot</td>  <td>Ocena</td> <br/>";
+			String pom = "<table><td>Przedmiot</td>  <td>Ocena</td> <br/></br>";
 			Ocena ocena = new Ocena();
 
 			while (it.hasNext()) {
@@ -43,15 +71,12 @@
 			}
 			pom += "</table>";
 			out.print(pom);
-			out.print("<form method=\"post\" action=\"LogOut.jsp \">"
-					+ "<input type=\"submit\" value=\"Wyloguj\">");
 		}
 
 		else if (check.check(id, pass) == 2) {
-			out.println("Witaj "
-					+ check.getTeacherName(id)
-					+ "<form method=\"post\" action=\"ZmianaHasla.jsp \"> <input type=\"submit\" value=\"Zmien hasło\">"
-					+ "</form>  <br/>");
+			out.println("<h1> Witaj "
+					+  check.getTeacherName(id)
+					+ "!</h1>  <br/>");
 
 			String pom = "";
 			String pom2 = "";
@@ -76,15 +101,15 @@
 							+ " ";
 			}
 
-			out.print("Wybierz przedmiot:  <form method=\"post\" action=\"Oceny.jsp \">"
+			out.print("Wybierz przedmiot oraz klase: <form method=\"post\" action=\"Oceny.jsp \">"
 					+ "<select name=\"Lista_zajec\"  size=\"10\">"
 					+ pom
 					+ " </select> ");
 
-			out.print("Wybierz klase: "
+			out.print(" "
 					+ "<select name=\"Lista_klas\"  size=\"10\">"
 					+ "<option selected>I</option><option>II</option><option>III</option><option>IV</option><option>V</option><option>VI</option>"
-					+ " </select> "
+					+ " </select> <br/></br>"
 					+ "<input type=\"submit\" value=\"Dodaj oceny dla wybranej klasy\"></form> ");
 
 		}
@@ -92,12 +117,26 @@
 		else
 			out.print("Bład LOGOWANIA");
 	%>
-	<br />
-	<br />
+           
+        
+        <div class="cleaner"></div>
+    </div>
 
+</div> <!-- end of templatemo_content -->
+<div id="templatemo_content_bottom"></div>
 
-
-
-
+    <div class="section_w240">
+       
+        
+    </div>
+    
+    <div class="cleaner_h40"></div>
+    
+    <center>
+        Copyright © 2015 <a href="#">Jarosław Padjasek</a> | 
+    </center>
+    
+</div> <!-- end of footer -->
+</div> <!-- end of footer wrapper -->
 </body>
 </html>

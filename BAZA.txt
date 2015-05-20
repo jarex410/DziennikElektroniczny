@@ -70,3 +70,9 @@ INSERT INTO `baza`.`klasa_przedmiot` (`klasa_id`, `przedmiot_id`) VALUES ('6', '
 INSERT INTO `baza`.`klasa_przedmiot` (`klasa_id`, `przedmiot_id`) VALUES ('6', '12');
 
 
+INSERT INTO `baza`.`nauczyciel` (`id`, `adres`, `imie`, `nazwisko`, `pass`) VALUES ('999', '1', 'test', '1', '1');
+
+
+INSERT INTO `baza`.`uczen` (`id`, `adres`, `imie`, `nazwisko`, `pass`, `klasa_id`) VALUES ('156000', '1', 'test', '1', '1', '6');
+
+

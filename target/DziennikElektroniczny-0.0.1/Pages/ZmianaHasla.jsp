@@ -40,33 +40,39 @@
 </div> <!-- end of templatemo_menu_wrapper -->
 
 <div id="templatemo_content">
+  <form method="post" action="ZmianaHasla.jsp ">
 
-
-    
-    <div class="section_w940">
-	<jsp:useBean id="start" class="MavenTest.starterDAO" scope="session"></jsp:useBean>
-	<jsp:useBean id="pom2" class="MavenTest.pom" scope="session" />
-	<jsp:useBean id="user" class="Encje.Uczen" scope="session"></jsp:useBean>
-
-	<%
-		int id_Przedmiotu;
-		int id_Klasy;
+        Nowe hasło: <br />
+        <input type="password" name="newPass" /><br /> 
+        <input type="submit" value="zmień">
+    </form>
+     <jsp:useBean id="start"
+       class="MavenTest.starterDAO" scope="session"></jsp:useBean>
+		<jsp:useBean id="user" class="Encje.Uczen" scope="session"></jsp:useBean>
+		<jsp:useBean id="pom" class="MavenTest.pom" scope="session"></jsp:useBean>
+			<jsp:setProperty property="*" name="pom" />
+<%	
 		
-			String listaUczniow= request.getParameter("Lista_Uczniow");
-			String listaOcen = request.getParameter("Lista_Ocen");
-			String Przedmiot =pom2.getPrzedmiot() ;
-			String Klasa = pom2.getKlasa();
+		if(pom.getLiczZmianaHasla()==1)
+		{
+		if(start.passChange(user.getId(), user.getPass(), pom.getNewPass())==true)
+			{
 			
+			out.print("<h4>Zmieniono hasło </br> Zaloguj ponownie!<h4>");
+			session.invalidate();		
+			pom.setLiczZmianaHasla(0);
+			}
 			
-			id_Przedmiotu=start.findSubId(Przedmiot);
-			id_Klasy=start.getClassId(Klasa);
+		else
+			{out.print("<h4>Bład przy probie zmiany! </h4>");
+			pom.setLiczZmianaHasla(0);
+			}
+		
 
-			start.upDate(listaUczniow, listaOcen, id_Przedmiotu, id_Klasy, pom2.getListaUczniowKlasy());
-	%>
-
-	<H2>Dodano oceny</H2>  
-
-  
+		//pom.setLiczZmianaHasla(0);
+		}
+		pom.setLiczZmianaHasla(1);
+%>
 
         <div class="cleaner"></div>
     </div>
